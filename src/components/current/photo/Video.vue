@@ -312,50 +312,12 @@ export default {
   }
   .game {
     .common();
-    ul {
-      li {
-        &.one {
-          background: url('../../../assets/images/photo/game1.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        div {
-          width: 80px;
-          height: 40px;
-          border-radius: 10px;
-          overflow: hidden;
-          background: url('../../../assets/images/photo/play.png') no-repeat -30px -23px;
-        }
-      }
-    }
   }
   .hero {
     .common();
-    ul {
-      li {
-        &.one {
-          background: url('../../../assets/images/photo/hero1.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        div {
-          width: 80px;
-          height: 40px;
-          border-radius: 10px;
-          overflow: hidden;
-          background: url('../../../assets/images/photo/play.png') no-repeat -30px -23px;
-        }
-      }
-    }
   }
   .image {
     .common();
-    ul {
-      li {
-        &.one {
-          background: url('../../../assets/images/photo/image1.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-      }
-    }
   }
 }
 </style>
