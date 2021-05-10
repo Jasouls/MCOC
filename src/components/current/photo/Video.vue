@@ -6,27 +6,12 @@
       </div>
       <hr />
       <ul>
-        <li class="one">
+        <li v-for="data in animatelist" :key="data.encrId" @click="toJump(data.linkUrl)">
           <div></div>
-          <p>X的崛起</p>
+          <img :src="data.thumbnail" alt="">
+          <p>{{data.infoTitle}}</p>
         </li>
-        <li class="two">
-          <div></div>
-          <p>北地考察</p>
-        </li>
-        <li class="three">
-          <div></div>
-          <p>黑寡妇：血色黎明</p>
-        </li>
-        <li class="four">
-          <div></div>
-          <p>来自远方</p>
-        </li>
-        <li class="five">
-          <div></div>
-          <p>鼹鼠人的征途</p>
-        </li>
-        <li class="six">
+        <li class="more" @click="moreAni1">
           <main>查看更多</main>
         </li>
       </ul>
@@ -37,27 +22,12 @@
       </div>
       <hr />
       <ul>
-        <li class="one">
+        <li v-for="data in gamelist" :key="data.encrId" @click="toJump(data.linkUrl)">
           <div></div>
-          <p>V27.1版本预告</p>
+          <img :src="data.thumbnail" alt="">
+          <p>{{data.infoTitle}}</p>
         </li>
-        <li class="two">
-          <div></div>
-          <p>迄今为止|第一章：崩溃</p>
-        </li>
-        <li class="three">
-          <div></div>
-          <p>V25.3版本预告</p>
-        </li>
-        <li class="four">
-          <div></div>
-          <p>V25.2版本预告</p>
-        </li>
-        <li class="five">
-          <div></div>
-          <p>五周年庆典</p>
-        </li>
-        <li class="six">
+        <li class="mores" @click="moreAni2">
           <main>查看更多</main>
         </li>
       </ul>
@@ -68,27 +38,12 @@
       </div>
       <hr />
       <ul>
-        <li class="one">
+        <li v-for="data in herolist" :key="data.encrId" @click="toJump(data.linkUrl)">
           <div></div>
-          <p>浩克（不朽）</p>
+          <img :src="data.thumbnail" alt="">
+          <p>{{data.infoTitle}}</p>
         </li>
-        <li class="two">
-          <div></div>
-          <p>恶煞（不朽）</p>
-        </li>
-        <li class="three">
-          <div></div>
-          <p>宇宙恶灵骑士</p>
-        </li>
-        <li class="four">
-          <div></div>
-          <p>红魔</p>
-        </li>
-        <li class="five">
-          <div></div>
-          <p>天行者</p>
-        </li>
-        <li class="six">
+        <li class="mores" @click="moreAni3">
           <main>查看更多</main>
         </li>
       </ul>
@@ -99,30 +54,113 @@
       </div>
       <hr />
       <ul>
-        <li class="one">
-          <p>红色守卫</p>
+        <li v-for="data in imglist" :key="data.encrId" @click="toJump(data.linkUrl)">
+          <img :src="data.thumbnail" alt="">
+          <p>{{data.infoTitle}}</p>
         </li>
-        <li class="two">
-          <p>暴风女（金字塔X）</p>
-        </li>
-        <li class="three">
-          <p>至尊魔法师</p>
-        </li>
-        <li class="four">
-          <p>鼹鼠人</p>
-        </li>
-        <li class="five">
-          <p>新星</p>
-        </li>
-        <li class="six">
+        <li class="mores" @click="moreAni4">
           <main>查看更多</main>
         </li>
       </ul>
     </div>
   </div>
 </template>
+<script>
+import {request11,request12,request13,request14} from '@/network/request'
+export default {
+  data () {
+    return {
+      animatelist:[],
+      gamelist:[],
+      herolist:[],
+      imglist:[],
+      current1:1,
+      current2:1,
+      current3:1,
+      current4:1
+    }
+  },
+  mounted () {
+    request11({
+      url:'/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_1&pageSize=5&pageNum=1'
+    }).then(
+      res => {
+        this.animatelist = res
+      }
+    )
+    request12({
+      url:'/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_2&pageSize=5&pageNum=1'
+    }).then(
+      res => {
+        this.gamelist = res
+      }
+    )
+    request13({
+      url:'/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_3&pageSize=5&pageNum=1'
+    }).then(
+      res => {
+        this.herolist = res
+      }
+    )
+    request14({
+      url:'/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_4&pageSize=5&pageNum=1'
+    }).then(
+      res => {
+        this.imglist = res
+      }
+    )
+  },
+  methods: {
+    moreAni1(){
+      this.current1++
+      request11({
+        url:`/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_1&pageSize=5&pageNum=${this.current1}`
+      }).then(
+        res => {
+          this.animatelist = [...this.animatelist,...res]
+        }
+      )
+    },
+    moreAni2(){
+      this.current2++
+      request12({
+        url:`/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_2&pageSize=5&pageNum=${this.current2}`
+      }).then(
+        res => {
+          this.gamelist = [...this.gamelist,...res]
+        }
+      )
+    },
+    moreAni3(){
+      this.current3++
+      request13({
+        url:`/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_3&pageSize=5&pageNum=${this.current3}`
+      }).then(
+        res => {
+          this.herolist = [...this.herolist,...res]
+        }
+      )
+    },
+    moreAni4(){
+      this.current4++
+      request14({
+        url:`/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_4&pageSize=5&pageNum=${this.current4}`
+      }).then(
+        res => {
+          this.imglist = [...this.imglist,...res]
+        }
+      )
+    },
+    toJump(data){
+      window.location.href = data
+    }
+  }
+}
+</script>
 <style lang="less" scoped>
 .common {
+  width: 1280px;
+  margin: 0 auto;
   margin-top: 20px;
   .title {
     display: flex;
@@ -149,12 +187,15 @@
     li {
       display: flex;
       justify-content: center;
-      align-items: center;
       width: 406px;
       height: 232px;
       margin: 15px 5px;
       border: 1px solid #3b3b3b;
       position: relative;
+      img{
+        width: 100%;
+        display: block;
+      }
       &:hover {
         border-color: #eebc12;
         box-shadow: 0 0 10px 2px #eebc12;
@@ -164,9 +205,9 @@
         }
       }
 
-      &.six {
+      &.mores {
         main {
-          line-height: 332px;
+          line-height: 232px;
           font-size: 24px;
           color: blueviolet;
         }
@@ -179,17 +220,26 @@
         font-size: 14px;
         line-height: 42px;
       }
+      div {
+        position: absolute;
+        width: 100px;
+        height: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 10px;
+        overflow: hidden;
+        background: url('../../../assets/images/photo/play.png') no-repeat -18px -18px;
+      }
     }
   }
 }
 .video {
-  position: absolute;
-  top: 520px;
-  width: 1280px;
+  width:100%;
+  background-color: black;
   color: white;
-  left: 50%;
-  transform: translateX(-50%);
   .animation {
+    width: 1280px;
+    margin: 0 auto;
     .title {
       display: flex;
       box-sizing: border-box;
@@ -215,12 +265,15 @@
       li {
         display: flex;
         justify-content: center;
-        align-items: center;
         width: 623px;
         height: 332px;
         margin: 15px 5px;
         border: 1px solid #3b3b3b;
         position: relative;
+        img{
+          display: block;
+          width: 100%;
+        }
         &:hover {
           border-color: #eebc12;
           box-shadow: 0 0 10px 2px #eebc12;
@@ -229,22 +282,7 @@
             color: #eebc12;
           }
         }
-        &.one {
-          background: url('../../../assets/images/photo/video1.jpg') no-repeat;
-        }
-        &.two {
-          background: url('../../../assets/images/photo/video2.jpg') no-repeat;
-        }
-        &.three {
-          background: url('../../../assets/images/photo/video3.jpg') no-repeat;
-        }
-        &.four {
-          background: url('../../../assets/images/photo/video4.jpg') no-repeat;
-        }
-        &.five {
-          background: url('../../../assets/images/photo/video5.jpg') no-repeat;
-        }
-        &.six {
+        &.more {
           main {
             line-height: 332px;
             font-size: 24px;
@@ -260,6 +298,9 @@
           line-height: 60px;
         }
         div {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
           width: 100px;
           height: 50px;
           border-radius: 10px;
@@ -275,22 +316,6 @@
       li {
         &.one {
           background: url('../../../assets/images/photo/game1.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.two {
-          background: url('../../../assets/images/photo/game2.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.three {
-          background: url('../../../assets/images/photo/game3.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.four {
-          background: url('../../../assets/images/photo/game4.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.five {
-          background: url('../../../assets/images/photo/game5.jpg') no-repeat;
           background-size: 100% 100%;
         }
         div {
@@ -311,22 +336,6 @@
           background: url('../../../assets/images/photo/hero1.jpg') no-repeat;
           background-size: 100% 100%;
         }
-        &.two {
-          background: url('../../../assets/images/photo/hero2.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.three {
-          background: url('../../../assets/images/photo/hero3.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.four {
-          background: url('../../../assets/images/photo/hero4.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.five {
-          background: url('../../../assets/images/photo/hero5.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
         div {
           width: 80px;
           height: 40px;
@@ -343,22 +352,6 @@
       li {
         &.one {
           background: url('../../../assets/images/photo/image1.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.two {
-          background: url('../../../assets/images/photo/image2.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.three {
-          background: url('../../../assets/images/photo/image3.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.four {
-          background: url('../../../assets/images/photo/image4.jpg') no-repeat;
-          background-size: 100% 100%;
-        }
-        &.five {
-          background: url('../../../assets/images/photo/image5.jpg') no-repeat;
           background-size: 100% 100%;
         }
       }

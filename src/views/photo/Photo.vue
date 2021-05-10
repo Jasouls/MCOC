@@ -2,8 +2,8 @@
   <div>
     <Background></Background>
     <Video></Video>
-    <Bottom></Bottom>
     <Aside></Aside>
+    <Bottom></Bottom>
   </div>
 </template>
 <script>

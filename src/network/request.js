@@ -151,3 +151,61 @@ export function request10(config) {
   )
   return instance(config)
 }
+
+
+//photo
+export function request11(config) {
+  let instance = axios.create()
+  instance.interceptors.response.use(
+    config => {
+      let res = config.data.result.list
+      return res
+    },
+    error => {
+      return error
+    }
+  )
+  return instance(config)
+}
+
+export function request12(config) {
+  let instance = axios.create()
+  instance.interceptors.response.use(
+    config => {
+      let res = config.data.result.list
+      return res
+    },
+    error => {
+      return error
+    }
+  )
+  return instance(config)
+}
+
+export function request13(config) {
+  let instance = axios.create()
+  instance.interceptors.response.use(
+    config => {
+      let res = config.data.result.list
+      return res
+    },
+    error => {
+      return error
+    }
+  )
+  return instance(config)
+}
+
+export function request14(config) {
+  let instance = axios.create()
+  instance.interceptors.response.use(
+    config => {
+      let res = config.data.result.list
+      return res
+    },
+    error => {
+      return error
+    }
+  )
+  return instance(config)
+}
