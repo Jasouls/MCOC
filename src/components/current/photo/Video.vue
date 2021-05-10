@@ -151,7 +151,7 @@ export default {
         }
       )
     },
-    toJump(data){
+    toJump(data){      //跳转网络资源页面
       window.location.href = data
     }
   }

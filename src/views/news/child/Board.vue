@@ -30,7 +30,7 @@ export default {
     })
   },
   methods: {
-    loadMore() {
+    loadMore() {   //加载更多
       this.currentPage++
       request3({
         url: `/api/get/news/list?lang=zh-cn&gameCode=mcoc&columnAlias=news_2&pageSize=10&pageNum=${this.currentPage}`
