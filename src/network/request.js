@@ -152,8 +152,7 @@ export function request10(config) {
   return instance(config)
 }
 
-
-//photo
+// photo
 export function request11(config) {
   let instance = axios.create()
   instance.interceptors.response.use(

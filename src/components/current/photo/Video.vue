@@ -6,10 +6,14 @@
       </div>
       <hr />
       <ul>
-        <li v-for="data in animatelist" :key="data.encrId" @click="toJump(data.linkUrl)">
+        <li
+          v-for="data in animatelist"
+          :key="data.encrId"
+          @click="toJump(data.linkUrl)"
+        >
           <div></div>
-          <img :src="data.thumbnail" alt="">
-          <p>{{data.infoTitle}}</p>
+          <img :src="data.thumbnail" alt="" />
+          <p>{{ data.infoTitle }}</p>
         </li>
         <li class="more" @click="moreAni1">
           <main>查看更多</main>
@@ -22,10 +26,14 @@
       </div>
       <hr />
       <ul>
-        <li v-for="data in gamelist" :key="data.encrId" @click="toJump(data.linkUrl)">
+        <li
+          v-for="data in gamelist"
+          :key="data.encrId"
+          @click="toJump(data.linkUrl)"
+        >
           <div></div>
-          <img :src="data.thumbnail" alt="">
-          <p>{{data.infoTitle}}</p>
+          <img :src="data.thumbnail" alt="" />
+          <p>{{ data.infoTitle }}</p>
         </li>
         <li class="mores" @click="moreAni2">
           <main>查看更多</main>
@@ -38,10 +46,14 @@
       </div>
       <hr />
       <ul>
-        <li v-for="data in herolist" :key="data.encrId" @click="toJump(data.linkUrl)">
+        <li
+          v-for="data in herolist"
+          :key="data.encrId"
+          @click="toJump(data.linkUrl)"
+        >
           <div></div>
-          <img :src="data.thumbnail" alt="">
-          <p>{{data.infoTitle}}</p>
+          <img :src="data.thumbnail" alt="" />
+          <p>{{ data.infoTitle }}</p>
         </li>
         <li class="mores" @click="moreAni3">
           <main>查看更多</main>
@@ -54,9 +66,13 @@
       </div>
       <hr />
       <ul>
-        <li v-for="data in imglist" :key="data.encrId" @click="toJump(data.linkUrl)">
-          <img :src="data.thumbnail" alt="">
-          <p>{{data.infoTitle}}</p>
+        <li
+          v-for="data in imglist"
+          :key="data.encrId"
+          @click="toJump(data.linkUrl)"
+        >
+          <img :src="data.thumbnail" alt="" />
+          <p>{{ data.infoTitle }}</p>
         </li>
         <li class="mores" @click="moreAni4">
           <main>查看更多</main>
@@ -66,92 +82,81 @@
   </div>
 </template>
 <script>
-import {request11,request12,request13,request14} from '@/network/request'
+import { request11, request12, request13, request14 } from '@/network/request'
 export default {
-  data () {
+  data() {
     return {
-      animatelist:[],
-      gamelist:[],
-      herolist:[],
-      imglist:[],
-      current1:1,
-      current2:1,
-      current3:1,
-      current4:1
+      animatelist: [],
+      gamelist: [],
+      herolist: [],
+      imglist: [],
+      current1: 1,
+      current2: 1,
+      current3: 1,
+      current4: 1
     }
   },
-  mounted () {
+  mounted() {
     request11({
-      url:'/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_1&pageSize=5&pageNum=1'
-    }).then(
-      res => {
-        this.animatelist = res
-      }
-    )
+      url:
+        '/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_1&pageSize=5&pageNum=1'
+    }).then(res => {
+      this.animatelist = res
+    })
     request12({
-      url:'/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_2&pageSize=5&pageNum=1'
-    }).then(
-      res => {
-        this.gamelist = res
-      }
-    )
+      url:
+        '/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_2&pageSize=5&pageNum=1'
+    }).then(res => {
+      this.gamelist = res
+    })
     request13({
-      url:'/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_3&pageSize=5&pageNum=1'
-    }).then(
-      res => {
-        this.herolist = res
-      }
-    )
+      url:
+        '/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_3&pageSize=5&pageNum=1'
+    }).then(res => {
+      this.herolist = res
+    })
     request14({
-      url:'/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_4&pageSize=5&pageNum=1'
-    }).then(
-      res => {
-        this.imglist = res
-      }
-    )
+      url:
+        '/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_4&pageSize=5&pageNum=1'
+    }).then(res => {
+      this.imglist = res
+    })
   },
   methods: {
-    moreAni1(){
+    moreAni1() {
       this.current1++
       request11({
-        url:`/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_1&pageSize=5&pageNum=${this.current1}`
-      }).then(
-        res => {
-          this.animatelist = [...this.animatelist,...res]
-        }
-      )
+        url: `/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_1&pageSize=5&pageNum=${this.current1}`
+      }).then(res => {
+        this.animatelist = [...this.animatelist, ...res]
+      })
     },
-    moreAni2(){
+    moreAni2() {
       this.current2++
       request12({
-        url:`/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_2&pageSize=5&pageNum=${this.current2}`
-      }).then(
-        res => {
-          this.gamelist = [...this.gamelist,...res]
-        }
-      )
+        url: `/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_2&pageSize=5&pageNum=${this.current2}`
+      }).then(res => {
+        this.gamelist = [...this.gamelist, ...res]
+      })
     },
-    moreAni3(){
+    moreAni3() {
       this.current3++
       request13({
-        url:`/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_3&pageSize=5&pageNum=${this.current3}`
-      }).then(
-        res => {
-          this.herolist = [...this.herolist,...res]
-        }
-      )
+        url: `/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_3&pageSize=5&pageNum=${this.current3}`
+      }).then(res => {
+        this.herolist = [...this.herolist, ...res]
+      })
     },
-    moreAni4(){
+    moreAni4() {
       this.current4++
       request14({
-        url:`/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_4&pageSize=5&pageNum=${this.current4}`
-      }).then(
-        res => {
-          this.imglist = [...this.imglist,...res]
-        }
-      )
+        url: `/api/get/media?lang=zh-cn&gameCode=mcoc&columnAlias=media_4&pageSize=5&pageNum=${this.current4}`
+      }).then(res => {
+        this.imglist = [...this.imglist, ...res]
+      })
     },
-    toJump(data){      //跳转网络资源页面
+    toJump(data) {
+      // 跳转网络资源页面
       window.location.href = data
     }
   }
@@ -192,7 +197,7 @@ export default {
       margin: 15px 5px;
       border: 1px solid #3b3b3b;
       position: relative;
-      img{
+      img {
         width: 100%;
         display: block;
       }
@@ -234,7 +239,7 @@ export default {
   }
 }
 .video {
-  width:100%;
+  width: 100%;
   background-color: black;
   color: white;
   .animation {
@@ -270,7 +275,7 @@ export default {
         margin: 15px 5px;
         border: 1px solid #3b3b3b;
         position: relative;
-        img{
+        img {
           display: block;
           width: 100%;
         }
