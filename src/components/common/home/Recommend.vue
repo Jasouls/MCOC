@@ -2,7 +2,7 @@
   <div class="recommend">
     <div class="title">
       <h2>新闻推荐</h2>
-      <p>查看更多>></p>
+      <p @click="toNews">查看更多>></p>
     </div>
     <ul class="message">
       <li v-for="data in messages" :key="data.encrId">
@@ -251,6 +251,11 @@ export default {
     })
     galleryTop.params.control = galleryThumbs
     galleryThumbs.params.control = galleryTop
+  },
+  methods: {
+    toNews() {
+      this.$router.push('/news')
+    }
   }
 }
 </script>
@@ -276,6 +281,9 @@ export default {
       right: 0;
       top: 0;
       color: #eebc12;
+      &:hover{
+        cursor: pointer;
+      }
     }
   }
   .message {
